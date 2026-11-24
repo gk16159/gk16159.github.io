@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Academic homepage of Gulshan Kumar, PhD scholar at IIT Gandhinagar working in computational mineral physics and high-pressure geoscience.">
+<meta name="theme-color" content="#020617">
+<title>Gulshan Kumar | Computational Mineral Physics</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+:root{--bg:#020617;--text:#e2e8f0;--muted:#a9b8cc;--glass:rgba(15,23,42,.72);--border:rgba(96,165,250,.23);--glow:rgba(37,99,235,.14);--accent:#93c5fd;--link:#bfdbfe;--chip:rgba(30,41,59,.78)}
+body.light{--bg:#eef4fb;--text:#0f172a;--muted:#475569;--glass:rgba(255,255,255,.86);--border:rgba(37,99,235,.2);--glow:rgba(37,99,235,.08);--accent:#1d4ed8;--link:#1d4ed8;--chip:rgba(219,234,254,.9)}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;transition:background .35s,color .35s;line-height:1.65}
+#bgCanvas,#particleCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none}#bgCanvas{z-index:-2}#particleCanvas{z-index:-1}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+.toggle{position:fixed;top:16px;right:18px;z-index:20;padding:10px 16px;border:1px solid var(--border);border-radius:30px;cursor:pointer;background:var(--chip);color:var(--text);font-weight:bold}
+nav{position:relative;z-index:5;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:15px 65px 5px;font-size:14px}nav a{color:var(--muted)}
+header{min-height:94vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:65px 20px 45px}
+.profile{width:166px;height:166px;border-radius:50%;object-fit:cover;border:4px solid rgba(96,165,250,.6);box-shadow:0 0 30px rgba(59,130,246,.32);margin-bottom:22px}
+h1{font-size:clamp(38px,6vw,56px);line-height:1.15;margin-bottom:10px;text-shadow:0 0 15px rgba(59,130,246,.35)}
+.subtitle{font-size:clamp(17px,2.5vw,22px);color:var(--accent);margin-bottom:18px}
+.bio{max-width:920px;font-size:17px;color:var(--muted);line-height:1.85}
+.stats{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px}.statbox{display:block;padding:15px 20px;border-radius:16px;background:var(--chip);border:1px solid var(--border);min-width:155px;transition:.25s}.statbox:hover{transform:translateY(-3px);text-decoration:none;box-shadow:0 0 18px var(--glow)}.statbox h3{font-size:20px;color:var(--accent)}.statbox p{font-size:13px;color:var(--muted)}
+.section{max-width:1160px;margin:30px auto;padding:18px 22px}.section-title{font-size:28px;margin:10px 0 18px;color:var(--accent)}
+.glass{background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(9px);border-radius:18px;padding:24px;box-shadow:0 0 22px var(--glow);margin:18px 0;transition:transform .25s,border-color .25s}.glass:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.42)}
+.glass h2{font-size:22px;margin-bottom:12px}.glass h3{font-size:17px;margin:12px 0 5px;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{height:100%}.card p,.glass p{color:var(--muted)}
+ul{padding-left:21px;margin-top:8px;color:var(--muted)}li{margin:6px 0}
+.taglist{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}.tag{font-size:13px;padding:6px 11px;border:1px solid var(--border);border-radius:20px;background:var(--chip);color:var(--text)}
+.pub-card{display:flex;flex-direction:column;gap:9px}.pub-card .venue{font-size:13px;color:var(--accent)}.pub-card p{font-size:14px}.pub-card a{font-size:14px;font-weight:bold;align-self:flex-start}
+.timeline-item{border-left:2px solid var(--border);padding:2px 0 15px 17px;margin:8px 0 8px 5px}.timeline-item:last-child{padding-bottom:0}.year{font-size:13px;color:var(--accent);font-weight:bold}
+.sports-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.achievement{background:var(--chip);border:1px solid var(--border);border-radius:14px;padding:17px}.achievement strong{display:block;color:var(--accent);margin-bottom:4px}.achievement p{font-size:14px}
+footer{text-align:center;padding:35px 20px 45px;color:var(--muted);font-size:13px}
+@media(max-width:760px){.grid,.sports-grid{grid-template-columns:1fr}.section{padding:12px 15px}nav{padding:18px 15px 5px;gap:12px}.bio{font-size:15px}.glass{padding:19px}.profile{width:145px;height:145px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<button class="toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">☀ / 🌙</button>
+<canvas id="bgCanvas" aria-hidden="true"></canvas><canvas id="particleCanvas" aria-hidden="true"></canvas>
+<nav aria-label="Main navigation">
+<a href="#about">About</a><a href="#research">Research</a><a href="#publications">Publications</a><a href="#conferences">Conferences</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#achievements">Sports & Achievements</a>
+</nav>
+<header>
+<img src="profile.webp" class="profile" alt="Gulshan Kumar" onerror="this.style.display='none'">
+<h1>Gulshan Kumar</h1>
+<div class="subtitle">Computational Mineral Physics · High-Pressure Geoscience</div>
+<div class="bio">PhD Scholar in Earth Sciences at IIT Gandhinagar. My research uses first-principles calculations and computational methods to understand the structural, elastic, vibrational and thermodynamic properties of minerals and materials under extreme pressure–temperature conditions. I work with density functional theory (DFT), lattice dynamics, elasticity, Raman spectroscopy and powder X-ray diffraction.</div>
+<div class="stats">
+<a class="statbox" href="https://scholar.google.com/citations?user=tNZsO5kAAAAJ&hl=en" target="_blank" rel="noopener"><h3>Google Scholar</h3><p>Publications & citations</p></a>
+<a class="statbox" href="https://www.researchgate.net/profile/Gulshan-Kumar-19" target="_blank" rel="noopener"><h3>ResearchGate</h3><p>Research network</p></a>
+<a class="statbox" href="https://orcid.org/0009-0004-8736-062X" target="_blank" rel="noopener"><h3>ORCID</h3><p>Research identifier</p></a>
+<a class="statbox" href="https://www.linkedin.com/in/gulshan-kumar-4840b1128/" target="_blank" rel="noopener"><h3>LinkedIn</h3><p>Professional profile</p></a>
+</div>
+</header>
+<main>
+<section class="section" id="about"><div class="glass"><h2>About My Research</h2><p>I investigate pressure-induced phase transitions, elastic anomalies, phonon instabilities and thermodynamic behaviour in Earth and planetary materials. My work combines first-principles simulations with experimental observations to understand how materials respond to extreme conditions.</p></div></section>
+<section class="section" id="research"><h2 class="section-title">Current Research</h2><div class="grid">
+<div class="glass card"><h2>DFT-based viscosity of liquids</h2><p>Currently working on first-principles molecular-dynamics calculations to investigate the viscosity and atomic-scale dynamics of liquid materials relevant to deep-Earth and planetary interiors.</p><div class="taglist"><span class="tag">DFT</span><span class="tag">AIMD</span><span class="tag">Liquid-state properties</span><span class="tag">Viscosity</span></div></div>
+<div class="glass card"><h2>Alloy substitution using DFT</h2><p>Investigating compositional substitution in materials and solid solutions using DFT, including structural stability and composition-dependent physical properties.</p><div class="taglist"><span class="tag">DFT</span><span class="tag">Alloy substitution</span><span class="tag">Solid solutions</span><span class="tag">Mixing energetics</span></div></div>
+<div class="glass card"><h2>High-pressure mineral physics</h2><p>Studying pressure-induced structural phase transitions, equations of state and elastic properties of GeO₂ polymorphs, with implications for understanding Earth materials.</p><div class="taglist"><span class="tag">GeO₂</span><span class="tag">High pressure</span><span class="tag">Elasticity</span><span class="tag">Phase transitions</span></div></div>
+<div class="glass card"><h2>Vibrational and thermodynamic properties</h2><p>Using phonon calculations and quasi-harmonic methods to explore lattice dynamics, thermal properties and the stability of crystalline phases.</p><div class="taglist"><span class="tag">Phonons</span><span class="tag">QHA</span><span class="tag">Thermodynamics</span></div></div>
+</div></section>
+<section class="section" id="publications">
+<h2 class="section-title">Publications & Research Outputs</h2>
+<div class="grid">
+<div class="glass pub-card" style="border-color:rgba(96,165,250,.65);box-shadow:0 0 24px rgba(59,130,246,.18)">
+<div class="venue">Journal of Solid State Chemistry · 2026 · Volume 366 (February 2027 issue)</div>
+<h3>High-pressure elastic properties of GeO₂ polymorphs up to 120 GPa</h3>
+<p>Gulshan Kumar, Sumit Ghosh, Sharad Babu Pillai and Rajkrishna Dutta. Article number: 126438.</p>
+<a href="https://doi.org/10.1016/j.jssc.2026.126438" target="_blank" rel="noopener">View journal article · DOI ↗</a>
+</div>
+<div class="glass pub-card"><div class="venue">Physics of Fluids · 2026</div><h3>Investigating the Kaps whistle tone at low- and high-flow rates of nitrogen gas</h3><p>G. Kumar. Physics of Fluids 38 (3).</p><a href="https://pubs.aip.org/aip/pof/article/38/3/037126/3384751/Investigating-the-Kaps-whistle-tone-at-low-and" target="_blank" rel="noopener">View journal article ↗</a></div>
+<div class="glass pub-card"><div class="venue">Journal of Applied Physics · 2025</div><h3>Equation of state of the rutile and CaCl₂-type phases of GeO₂ to 70 GPa</h3><p>S. Ghosh, G. Kumar, S.B. Pillai and R. Dutta. Journal of Applied Physics 138 (23).</p><a href="https://pubs.aip.org/aip/jap/article/138/23/235902/3374825/Equation-of-state-of-the-rutile-and-CaC-l-2-type" target="_blank" rel="noopener">View journal article ↗</a></div>
+<div class="glass pub-card"><div class="venue">RSC Book Chapter · 2025</div><h3>Uncovering the limits of lithium cobalt oxide: Challenges and innovations for high-voltage lithium-ion batteries</h3><p>V.P. Singh, S.K. Satyarthi, G. Kumar, A.K. Singh and R.K. Sharma.</p><a href="https://books.rsc.org/books/edited-volume/2289/chapter-abstract/8465954/Uncovering-the-Limits-of-Lithium-Cobalt-Oxide?redirectedFrom=fulltext" target="_blank" rel="noopener">View book chapter ↗</a></div>
+<div class="glass pub-card"><div class="venue">American Mineralogist · 2024</div><h3>High-pressure phase transition of olivine-type Mg₂GeO₄ to a metastable forsterite-III type structure and their equations of state</h3><p>R.V. Divya, G. Kumar, R.E. Cohen, S.J. Tracy, Y. Meng, S. Chariton, and co-authors. American Mineralogist 109 (12), 2052–2059.</p><a href="https://doi.org/10.2138/am-2023-9208" target="_blank" rel="noopener">View journal article ↗</a></div>
+<div class="glass pub-card"><div class="venue">IISER Kolkata Repository · 2021</div><h3>Phenomenon of Overblowing for Flute or Whistle</h3><p>G. Kumar. Research record hosted by the Indian Institute of Science Education and Research Kolkata.</p><a href="http://eprints.iiserkol.ac.in/1865/" target="_blank" rel="noopener">View repository record ↗</a></div>
+</div>
+<p style="margin:15px 2px;color:var(--muted);font-size:13px">This list reflects the seven records visible on my Google Scholar profile. The 2024 Mg₂GeO₄ conference contribution and the 2026 EGU poster are listed separately under Conferences & Presentations. For the latest record and citation count, visit <a href="https://scholar.google.com/citations?hl=en&user=tNZsO5kAAAAJ&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener">Google Scholar</a>.</p>
+</section>
+<section class="section" id="conferences"><h2 class="section-title">Conferences & Presentations</h2><div class="glass">
+<div class="timeline-item"><div class="year">2026</div><h3>European Geosciences Union (EGU) General Assembly 2026</h3><p>Poster presentation: “High-pressure elastic properties of GeO₂ polymorphs up to 120 GPa.”</p><a href="https://meetingorganizer.copernicus.org/EGU26/EGU26-5107.html" target="_blank" rel="noopener">Conference abstract ↗</a></div>
+<div class="timeline-item"><div class="year">2024</div><h3>National Conference, Presidency University, Kolkata</h3><p>Poster presentation: “DFT study of PbS, ZnS, and solid solution.”</p></div>
+<div class="timeline-item"><div class="year">2024</div><h3>IASGT contribution</h3><p>“Equation of state and high-pressure phase transitions in Mg₂GeO₄ forsterite.” Listed as a 2024 research contribution on Google Scholar.</p></div>
+<div class="timeline-item"><div class="year">2023</div><h3>National Conference, Wadia Institute of Himalayan Geology</h3><p>Poster presentation: “High-temperature Raman spectroscopy of PbS.”</p></div>
+</div></section>
+<section class="section" id="experience"><h2 class="section-title">Research Experience</h2><div class="glass">
+<div class="timeline-item"><div class="year">2022 – Present</div><h3>PhD Scholar · Department of Earth Sciences, IIT Gandhinagar</h3><p>Research in computational mineral physics, high-pressure behaviour of minerals and first-principles simulations.</p></div>
+<div class="timeline-item"><div class="year">2024 – 2026</div><h3>Junior Research Fellow (SERB) · IIT Gandhinagar</h3><ul><li>Investigated high-pressure phase transitions in GeO₂ using density functional theory.</li><li>Calculated elastic constants, phonon dispersion and thermodynamic properties using first-principles methods, Phonopy and quasi-harmonic approaches.</li><li>Connected computational results with Raman spectroscopy and powder X-ray diffraction measurements.</li></ul></div>
+<div class="timeline-item"><div class="year">2021</div><h3>Project Intern · IISER Kolkata</h3><p>Worked under Prof. Bipul Pal on aeroacoustic overblowing in whistles.</p></div>
+</div></section>
+<section class="section" id="skills"><h2 class="section-title">Technical Skills & Software</h2><div class="glass">
+<h3>Programming</h3><div class="taglist"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">LaTeX</span></div>
+<h3>Computational and simulation tools</h3><div class="taglist"><span class="tag">Quantum ESPRESSO</span><span class="tag">Phonopy</span><span class="tag">ElaStic</span><span class="tag">Gibbs2</span><span class="tag">CP2K</span><span class="tag">XtalOpt</span><span class="tag">EOS-Fit</span><span class="tag">Mineral-CIJ</span><span class="tag">QHA</span><span class="tag">OriginLab</span></div>
+<h3>Experimental and analytical methods</h3><div class="taglist"><span class="tag">Powder X-ray diffraction</span><span class="tag">Raman spectroscopy</span><span class="tag">Equation of state analysis</span><span class="tag">High-pressure mineral physics</span></div>
+</div></section>
+<!-- Sports and extracurricular achievements intentionally appear as the final main section. -->
+<section class="section" id="achievements"><h2 class="section-title">Sports & Achievements</h2><div class="glass"><p>Alongside research, I have actively participated in competitive sports, particularly basketball, kabaddi and athletics.</p><div class="sports-grid" style="margin-top:17px">
+<div class="achievement"><strong>Basketball · Inter-IIT</strong><p>Three-time participant in the Inter-IIT Basketball Tournament. Secured 4th place among 28 teams. Served as Basketball Captain for the 2026 Inter-IIT Tournament.</p></div>
+<div class="achievement"><strong>Basketball · Shaurya Cup</strong><p>Silver medalist at the Shaurya Cup, held at IIM Ahmedabad.</p></div>
+<div class="achievement"><strong>Basketball · Concours ’25</strong><p>Silver medalist at Concours ’25, DAIICT Gandhinagar.</p></div>
+<div class="achievement"><strong>Basketball · Khel Maha Kumbh 2025</strong><p>Silver medalist in basketball at Khel Maha Kumbh 2025.</p></div>
+<div class="achievement"><strong>Kabaddi · IISER Kolkata</strong><p>Two-time gold medalist in kabaddi (2018 and 2019).</p></div>
+<div class="achievement"><strong>Javelin Throw · IISER Kolkata</strong><p>Two-time bronze medalist in javelin throw (2017 and 2018).</p></div>
+</div></div></section>
+</main>
+<footer>© <span id="year"></span> Gulshan Kumar · Computational Mineral Physics · IIT Gandhinagar</footer>
+<script>
+const body=document.body;
+document.getElementById('themeToggle').addEventListener('click',()=>body.classList.toggle('light'));
+document.getElementById('year').textContent=new Date().getFullYear();
+const canvas=document.getElementById('bgCanvas'),ctx=canvas.getContext('2d');
+const pcanvas=document.getElementById('particleCanvas'),pctx=pcanvas.getContext('2d');
+let molecules=[],particles=[],width=0,height=0,raf=0;
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);width=window.innerWidth;height=window.innerHeight;[canvas,pcanvas].forEach(c=>{c.width=width*dpr;c.height=height*dpr;c.style.width=width+'px';c.style.height=height+'px';});ctx.setTransform(dpr,0,0,dpr,0,0);pctx.setTransform(dpr,0,0,dpr,0,0);}
+function init(){molecules=[];const count=width<768?5:9;for(let i=0;i<count;i++)molecules.push({x:Math.random()*width,y:Math.random()*height,r:24+Math.random()*15,dx:(Math.random()-.5)*.45,dy:(Math.random()-.5)*.45,angle:Math.random()*6});}
+function drawMolecule(m){ctx.strokeStyle='rgba(96,165,250,.28)';ctx.lineWidth=1.5;for(let i=0;i<5;i++){const a=Math.PI*2/5*i+m.angle,x=m.x+Math.cos(a)*m.r,y=m.y+Math.sin(a)*m.r;ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(m.x,m.y);ctx.lineTo(x,y);ctx.stroke();}ctx.beginPath();ctx.arc(m.x,m.y,5,0,Math.PI*2);ctx.stroke();}
+function animate(){ctx.clearRect(0,0,width,height);pctx.clearRect(0,0,width,height);molecules.forEach(m=>{m.x+=m.dx;m.y+=m.dy;m.angle+=.003;if(m.x<0||m.x>width)m.dx*=-1;if(m.y<0||m.y>height)m.dy*=-1;drawMolecule(m);});particles=particles.filter(p=>p.life>0);particles.forEach(p=>{p.x+=p.dx;p.y+=p.dy;p.life--;pctx.beginPath();pctx.arc(p.x,p.y,2,0,Math.PI*2);pctx.fillStyle='rgba(147,197,253,'+(p.life/40)+')';pctx.fill();});if(!reducedMotion)raf=requestAnimationFrame(animate);}
+resize();init();if(reducedMotion){molecules.forEach(drawMolecule)}else animate();
+window.addEventListener('resize',()=>{cancelAnimationFrame(raf);resize();init();if(reducedMotion){ctx.clearRect(0,0,width,height);molecules.forEach(drawMolecule)}else animate()});
+window.addEventListener('click',e=>{if(e.target.closest('a,button'))return;molecules.forEach((m,i)=>{if(Math.hypot(e.clientX-m.x,e.clientY-m.y)<m.r+8){if(!reducedMotion){for(let j=0;j<18;j++)particles.push({x:m.x,y:m.y,dx:(Math.random()-.5)*3.5,dy:(Math.random()-.5)*3.5,life:40});}molecules[i].x=Math.random()*width;molecules[i].y=Math.random()*height;}})});
+</script>
+</body>
+</html>
